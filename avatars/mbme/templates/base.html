@@ -38,14 +38,21 @@
               {% block extra_nav %}
 
               {% endblock %}
+              {% for p in menu %}
+                <li>
+                  <a href="{{ p.url }}">{{ p.name }}</a>
+                </li>
+              {% endfor %}
               {% for p in links.header %}
                 <li>
                   <a href="{{ p.url }}">{{ p.name }}</a>
                 </li>
               {% endfor %}
             {% endblock %}
+            <li>
+              <a href="https://{{ site.domain }}">{{ project.label }}</a>
+            </li>
           </ul>
-          <a href="https://{{ site.domain }}">{{ project.label }}</a>
         </div>
       {% endblock %}
       <div class="central">
@@ -66,8 +73,8 @@
           </div>
           <div>
             <div class="sig">
-              <a href="{{ site.domain }}/~matt/resume/matt-barry.pdf">Technologist</a>
-              | <a href="{{ site.domain }}">Discordian</a>
+              <a href="//{{ site.domain }}/~matt/resume/matt-barry.pdf">Technologist</a>
+              | <a href="//{{ site.domain }}">Discordian</a>
             </div>
             <div>
               <a class="gpg" href="{% static 'id/matt.barry.pub' %}">RSA4096 FBB8BEE70CA2937783DA20D5B4B94F7D7D2C0CA6</a>

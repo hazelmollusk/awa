@@ -104,6 +104,7 @@ urlpatterns = [
     path(f"{config.paths.auth}/", include(auth_urls, namespace="awa.auth")),
     # path("grappelli/", include("grappelli.urls")),
     path("tinymce/", include("tinymce.urls")),
+    path("mce_filebrowser/", include("mce_filebrowser.urls")),
     path(f"{config.paths.admin}/", admin.site.urls),
     path("", include(local_urls)),
     # path("", include(anchor_urls)),

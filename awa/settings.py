@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     "colorfield",
     "storages",
     "tinymce",
+    "sorl.thumbnail",
+    "mce_filebrowser",
     # "grappelli",
     # "filebrowser",
     # django defaults
@@ -154,6 +156,7 @@ AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
 
 
 TINYMCE_DEFAULT_CONFIG = {
+    "file_browser_callback": "mce_filebrowser",
     "height": "500px",
     "plugins": "advlist autolink lists link image charmap searchreplace visualblocks code insertdatetime media table paste code help wordcount spellchecker",
     "toolbar": "undo redo | formatselect | bold italic underline strikethrough | alignleft | aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | insertfile image media pageembed template link codesample | ltr rtl | showcomments addcomment code",

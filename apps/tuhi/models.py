@@ -1,6 +1,5 @@
 from django.db import models
 from django.shortcuts import reverse
-from django_quill.fields import QuillField
 from tinymce.models import HTMLField
 
 from apps.mana.models import AuditedMixin

@@ -31,7 +31,7 @@ pre {
 
 div.site_label {
   font-family: 'Nothing You Could Do', cursive;
-  font-size: xx-large;
+  font-size: large;
   color: black;
   text-align: right;
   background: #4b5b18;
@@ -56,7 +56,7 @@ ul.site_nav li {
   padding-left: 10px;
   padding-right: 20px;
   padding-top: 5px;
-  font-size: x-large;
+  font-size: large;
   vertical-align: middle;
 }
 
@@ -127,7 +127,7 @@ div.contents {
 
 .contents {
   font-family: 'DM Sans', sans-serif;
-  font-size: x-large;
+  font-size: large;
   padding: 10px;
 }
 
@@ -160,9 +160,13 @@ a:visited {
   padding: 6px;
   text-decoration: none;
 }
+a:hover {
+  text-decoration:underline;
+}
 
 .coda a:hover, .site_nav a:hover {
   border: 2px ridge darkslategrey;
+  text-decoration: none;
   border-radius: 20px;
   padding: 4px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -203,7 +207,7 @@ ul.site_nav li a:hover {
   font-family: 'Caveat', script;
   padding: 10px;
   padding-bottom: 20px;
-  font-size: 16pt;
+  font-size: medium;
   width: 100%;
   text-align: center;
 }

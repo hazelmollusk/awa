@@ -1,4 +1,7 @@
 from django.contrib import admin
+
+from mce_filebrowser.admin import MCEFilebrowserAdmin
+
 from .models import Page, Folder, PageSection
 
 
@@ -12,7 +15,7 @@ class PageSectionAdmin(admin.StackedInline):
     min_num = 1
 
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(MCEFilebrowserAdmin):
     readonly_fields = AUDIT_FIELDS
     prepopulated_fields = {"slug": ["title"]}
     fieldsets = [
