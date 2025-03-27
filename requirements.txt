@@ -26,7 +26,7 @@ django-simple-history==3.7.0
 django-sortedm2m==4.0.0
 django-storages==1.14.4
 django-tinymce==4.1.0
-Django-tinymce-filebrowser==0.2.1
+Django-tinymce-filebrowser @ git+https://github.com/zaharazod/Django-tinymce-filebrowser.git@3c0008d0f56ce6c5d6d104e50c77daffce1bd846
 djangorestframework==3.15.2
 executing==2.2.0
 idna==3.8
