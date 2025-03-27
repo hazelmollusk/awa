@@ -21,12 +21,12 @@ django-filebrowser==4.0.3
 django-grappelli==3.0.9
 django-guardian==2.4.0
 django-model-utils==4.5.1
-django-quill-editor @ file:///home/matt/hack/django-quill-editor
+django-quill-editor==0.1.42
 django-simple-history==3.7.0
 django-sortedm2m==4.0.0
 django-storages==1.14.4
 django-tinymce==4.1.0
-Django-tinymce-filebrowser @ file:///home/matt/hack/Django-tinymce-filebrowser
+Django-tinymce-filebrowser==0.2.1
 djangorestframework==3.15.2
 executing==2.2.0
 idna==3.8
