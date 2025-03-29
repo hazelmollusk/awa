@@ -47,7 +47,11 @@ ROLE_CHOICES = [(v, v.capitalize()) for v in ROLES]
 class SiteLink(AuditedMixin, IconMixin):
     name = models.CharField(max_length=32, blank=True)
     url = models.URLField(max_length=128)
+    email = models.EmailField(max_length=128, blank=True)
     role = models.CharField(max_length=10, default="unset", choices=ROLE_CHOICES)
 
     def __str__(self):
-        return self.name
+        return self.get_url()
+
+    def get_url(self):
+        return f"mailto:{self.email}" if self.email else self.url

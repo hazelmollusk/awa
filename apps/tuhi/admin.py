@@ -10,7 +10,7 @@ AUDIT_FIELDS = ["created_by", "created", "modified"]
 
 class PageSectionAdmin(admin.StackedInline):
     model = PageSection
-    fields = ("title", "content")
+    fields = ("title", "draft", "content")
     extra = 0
     min_num = 1
 

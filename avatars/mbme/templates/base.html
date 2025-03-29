@@ -105,7 +105,7 @@
       </div>
       <div class="bottom part social_links">
         {% for link in links.icons %}
-          <a href="{{ link.url }}" title="{{ link.name }}" class="social"><img src="{{ link.icon.url }}" class="social" /></a>
+          <a href="{{ link.get_url }}" title="{{ link.name }}" class="social"><img src="{{ link.icon.url }}" class="social" /></a>
         {% endfor %}
       </div>
     </div>
