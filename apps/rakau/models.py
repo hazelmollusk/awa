@@ -92,7 +92,10 @@ class ContextPath(Context):
 
     @cached_property
     def full_path(self):
-        return f"{self.parent.full_path}/{self.path}"
+        path = self.parent.full_path
+        if path and not path.endswith("/"):
+            path += "/"
+        return path + self.path
 
     def save(self, *a, **kw):
         if not self.path:

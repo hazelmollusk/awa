@@ -151,6 +151,9 @@ STATICFILES_FINDERS = [
 NODE_STATIC_GLOB = BASE_DIR / "node_modules" / "*" / "dist"
 STATICFILES_DIRS = glob(NODE_STATIC_GLOB.as_posix())
 
+STATIC_URL = config.storages.staticfiles.OPTIONS.location or "static/"
+MEDIA_URL = config.storages.default.OPTIONS.location or "media/"
+
 AWS_ACCESS_KEY_ID = config.connections.aws.key
 AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
 

@@ -26,6 +26,7 @@ class Folder(AuditedMixin, ContentMixin):
 
 class Page(Folder):
     draft = models.BooleanField(default=True)
+    visible = models.BooleanField(default=False)
 
 
 class PageSection(AuditedMixin):

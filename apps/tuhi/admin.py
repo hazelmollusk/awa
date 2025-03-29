@@ -19,7 +19,7 @@ class PageAdmin(MCEFilebrowserAdmin):
     readonly_fields = AUDIT_FIELDS
     prepopulated_fields = {"slug": ["title"]}
     fieldsets = [
-        (None, {"fields": ["title", "slug"]}),
+        (None, {"fields": ["title", "slug", "draft", "visible"]}),
         ("Audit", {"fields": AUDIT_FIELDS}),
     ]
     inlines = (PageSectionAdmin,)

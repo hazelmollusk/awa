@@ -19,13 +19,17 @@ def awa(request):
         site = Site.objects.first()
     project = config.get_current_project(request)
     root = ContextRoot.objects.get(sites=site)
-    root_pages = ContentNode(
-        parent=root, content_type=ContentType.objects.get_for_model(Page)
-    )
+    root_pages = [
+        c.content_object
+        for c in ContentNode.objects.filter(
+            parent=root, content_type=ContentType.objects.get_for_model(Page)
+        )
+    ]
+    menu_pages = [p for p in root_pages if p.visible and not p.draft]
 
     context = {
         "links": {
-            "menu": root_pages,
+            "menu": menu_pages,
             "header": SiteLink.objects.filter(role="header"),
             "footer": SiteLink.objects.filter(role="footer", icon__exact=""),
             "icons": SiteLink.objects.filter(role="footer").exclude(icon__exact=""),
