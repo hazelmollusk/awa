@@ -149,9 +149,16 @@ div.contents {
   width: auto;
 }
 
-.social {
-  height: 24px;
+img.social {
+  height: 24pt;
   width: auto;
+}
+.social_links a {
+  border: 2px solid rgba(0,0,0,0);
+}
+.social_links a:hover {
+  border: 2px dotted darkslategrey;
+  border-radius: 24px;
 }
 
 a,
