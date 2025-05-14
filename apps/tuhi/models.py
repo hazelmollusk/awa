@@ -24,6 +24,11 @@ class Folder(AuditedMixin, ContentMixin):
         return self.slug
 
 
+class PostContainer(models.Model):
+    class Meta:
+        abstract = True
+
+
 class Page(Folder):
     draft = models.BooleanField(default=True)
     visible = models.BooleanField(default=False)

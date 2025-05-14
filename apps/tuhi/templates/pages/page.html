@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block subtitle %}
+  {{ page.title }}
+{% endblock %}
 {% block contents %}
   <div class="tuhi-page">
     {% if page.title %}
