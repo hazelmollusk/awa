@@ -20,6 +20,9 @@ from django.shortcuts import redirect, render
 
 from apps.rakau.models import ContentNode
 from apps.rakau.views import view_context
+from .models import SiteLink
+from .serializers import SiteLinkSerializer
+from rest_framework import viewsets, permissions
 
 user_model = get_user_model()
 
@@ -59,3 +62,9 @@ def script(request, template_name):
     except (TemplateSyntaxError, TemplateDoesNotExist) as e:
         raise Http404(e)
     return render(request, template_path, content_type="text/javascript")
+
+
+class SiteLinkViewSet(viewsets.ModelViewSet):
+    queryset = SiteLink.objects.all()
+    serializer_class = SiteLinkSerializer
+    permission_classes = [permissions.IsAuthenticated]

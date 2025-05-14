@@ -1,5 +1,6 @@
 # import re
 from django.template import Library
+
 # from django.template.defaultfilters import stringfilter
 # from django.conf import settings
 from django.utils.safestring import mark_safe
@@ -10,21 +11,21 @@ register = Library()
 vaticinator = Vaticinator()
 
 FONTS = [
-    'Shadows+Into+Light',
-    'IM+Fell+English+SC',
-    'Sedgwick+Ave+Display',
-    'Acme',
-    'Nothing+You+Could+Do',
-    'VT323',
-    'Jura',
-    'Josefin+Sans',
-    'Matemasie',
-    'Caveat',
-    'Black+Ops+One',
-    'Dosis:wght@200;300;400;500;600;700',
-    'Courier+Prime:ital,wght@0,400;0,700;1,400;1,700',
-    'DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000',
-    'Space+Mono:ital,wght@0,400;0,700;1,400;1,700',
+    "Shadows+Into+Light",
+    "IM+Fell+English+SC",
+    "Sedgwick+Ave+Display",
+    "Acme",
+    "Nothing+You+Could+Do",
+    "VT323",
+    "Jura",
+    "Josefin+Sans",
+    "Matemasie",
+    "Caveat",
+    "Black+Ops+One",
+    "Dosis:wght@200;300;400;500;600;700",
+    "Courier+Prime:ital,wght@0,400;0,700;1,400;1,700",
+    "DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000",
+    "Space+Mono:ital,wght@0,400;0,700;1,400;1,700",
 ]
 FONTS_PER_LINK = 3
 
@@ -62,7 +63,7 @@ def font_links():
         '<link rel="preconnect" \
             href="https://fonts.googleapis.com" />',
         '<link rel="preconnect" \
-            href="https://fonts.gstatic.com" crossorigin />'
+            href="https://fonts.gstatic.com" crossorigin />',
     ]
 
     font_list = FONTS.copy()
@@ -78,4 +79,4 @@ def font_links():
             + '&display=swap" rel="stylesheet" />'
         )
 
-    return mark_safe('\n'.join(links))
+    return mark_safe("\n".join(links))

@@ -95,6 +95,16 @@ api_urls = (
 #     app_name,
 # )
 
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+
+from .views import SiteLinkViewSet
+
+router.register(r"sitelinks", SiteLinkViewSet)
+# router.register(r'users', UserViewSet)
+# router.register(r'groups', GroupViewSet)
+
 urlpatterns = [
     path(f"{config.paths.i18n}/", include("django.conf.urls.i18n")),
     path(
@@ -105,6 +115,8 @@ urlpatterns = [
     # path("grappelli/", include("grappelli.urls")),
     path("tinymce/", include("tinymce.urls")),
     path("mce_filebrowser/", include("mce_filebrowser.urls")),
+    path("api/", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path(f"{config.paths.admin}/", admin.site.urls),
     path("", include(local_urls)),
     # path("", include(anchor_urls)),
