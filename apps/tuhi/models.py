@@ -6,6 +6,12 @@ from apps.mana.models import AuditedMixin
 from apps.rakau.models import Context, ContentMixin
 
 
+
+class PostContainer(models.Model):
+    class Meta:
+        abstract = True
+
+
 class Folder(AuditedMixin, ContentMixin):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=False)  # FIXME
@@ -22,11 +28,6 @@ class Folder(AuditedMixin, ContentMixin):
     @property
     def context_path(self):
         return self.slug
-
-
-class PostContainer(models.Model):
-    class Meta:
-        abstract = True
 
 
 class Page(Folder):

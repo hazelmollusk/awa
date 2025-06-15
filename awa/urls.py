@@ -22,6 +22,8 @@ from .views import (
     logout,
 )
 
+from rest_framework import routers
+from .views import SiteLinkViewSet
 app_name = "awa"
 
 AWA_PATHS = [
@@ -95,11 +97,9 @@ api_urls = (
 #     app_name,
 # )
 
-from rest_framework import routers
 
 router = routers.DefaultRouter()
 
-from .views import SiteLinkViewSet
 
 router.register(r"sitelinks", SiteLinkViewSet)
 # router.register(r'users', UserViewSet)
