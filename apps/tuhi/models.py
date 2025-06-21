@@ -1,6 +1,9 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.utils.text import slugify
+
 from tinymce.models import HTMLField
+from ckedi
 
 from apps.mana.models import AuditedMixin
 from apps.rakau.models import Context, ContentMixin
@@ -46,3 +49,24 @@ class PageSection(AuditedMixin):
 
     class Meta:
         verbose_name = "section"
+
+
+class Post(AuditedMixin, ContentMixin):
+    content = HTMLField()
+    def str(self):
+        return slugify(self.content)[0:20]
+    
+    @property
+    def context_path(self):
+        return str(self)
+
+class Comment(AuditedMixin, ContentMixin):
+    content = HTMLField()
+    def str(self):
+        return slugify(self.content)[0:20]
+    
+    @property
+    def context_path(self):
+        return str(self)
+
+

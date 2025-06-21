@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from guardian.admin import GuardedModelAdmin, GuardedModelAdminMixin
 from mce_filebrowser.admin import MCEFilebrowserAdmin
 
 from .models import Page, Folder, PageSection

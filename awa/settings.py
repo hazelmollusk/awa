@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     "awa",  # core
     "apps.huri",  # ui
     "apps.tohu",  # sign, badge, symbol (tags)
-    "apps.tuhi",  # pages
-    "apps.hautaka",  # journal
+    "apps.tuhi",  # content
 ] + custom_apps
 
 # SITE_ID = config.site_id or 1
@@ -62,6 +61,8 @@ ALLOWED_HOSTS = ["*"]  # for ELB/CF/etc
 CSRF_TRUSTED_ORIGINS = [f"{scheme}://{d}" for d in DOMAINS]
 # CSRF_COOKIE_DOMAIN = DOMAINS[0]
 CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
 
 DATABASES = config.databases.to_dict() or {}
 SECRET_KEY = config.secret_key or "aWaSecRet"

@@ -16,8 +16,8 @@ web publishing system using django.
 
 - awa = river (the whole thing)
 - mana = power (access control)
-- ara = path (object mapping)
-- tuhi = writing (pages)
+- rakau = tree (object mapping)
+- tuhi = writing (content)
 - tohu = sign (tags)
 - huri = ??? (ui)
 
