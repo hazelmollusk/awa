@@ -1,7 +1,7 @@
 from glob import glob
 from pathlib import Path
 from awa.util import AwaConfig
-from filebrowser.sites import site
+# from filebrowser.sites import site
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,9 +15,12 @@ INSTALLED_APPS = [
     "admin_interface",
     "colorfield",
     "storages",
-    "tinymce",
-    "sorl.thumbnail",
-    "mce_filebrowser",
+    # "tinymce",
+    # "sorl.thumbnail",
+    # "mce_filebrowser",
+    # "django_quill",
+    # "ckeditor",
+    "markdownx",
     # "grappelli",
     # "filebrowser",
     # django defaults
@@ -34,7 +37,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "social_django",
     "sortedm2m",
-    "django_quill",
     "simple_history",
     # awa modules
     "apps.mana",  # authnz
@@ -71,7 +73,8 @@ SILENCED_SYSTEM_CHECKS = ["security.W019"]
 CSRF_USE_SESSIONS = True
 
 AUTH_USER_MODEL = "mana.ManaUser"
-GUARDIAN_MONKEY_PATCH = False
+GUARDIAN_MONKEY_PATCH_USER = False
+# GUARDIAN_MONKEY_PATCH = False
 # GUARDIAN_USER_OBJ_PERMS_MODEL = 'mana.UserPermission'
 # GUARDIAN_GROUP_OBJ_PERMS_MODELS = 'mana.GroupPermission'
 # ANONYMOUS_USER_ID = -1
@@ -159,6 +162,7 @@ MEDIA_URL = config.storages.default.OPTIONS.location or "media/"
 AWS_ACCESS_KEY_ID = config.connections.aws.key
 AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
 
+MARKDOWNX_URLS_PATH = f"{config.paths.prefix}/{config.paths.resources}/mdx"
 
 TINYMCE_DEFAULT_CONFIG = {
     "file_browser_callback": "mce_filebrowser",

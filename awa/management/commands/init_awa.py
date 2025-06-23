@@ -73,7 +73,7 @@ class Command(BaseCommand):
                 project_context.sites.clear()
                 for domain in project.domains:
                     site, site_is_new = Site.objects.get_or_create(
-                        name=project.slug, domain=domain.domain
+                        defaults={"name":project.slug}, domain=domain.domain
                     )
                     project_context.sites.add(site)
                 project_context.save()

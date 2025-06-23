@@ -1,14 +1,18 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
+from django.db.models.fields import TextField
 
-from tinymce.models import HTMLField
-from ckedi
+# from tinymce.models import HTMLField
+# from ckeditor.fields import RichTextField
+from markdownx.models import MarkdownxField
 
 from apps.mana.models import AuditedMixin
 from apps.rakau.models import Context, ContentMixin
 
-
+content_page_field = lambda: MarkdownxField()
+content_post_field = lambda: MarkdownxField()
+content_comment_field = lambda: TextField()
 
 class PostContainer(models.Model):
     class Meta:
@@ -42,7 +46,7 @@ class PageSection(AuditedMixin):
     page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name="sections")
     title = models.CharField(max_length=255, blank=True, default="")
     draft = models.BooleanField(default=True)
-    content = HTMLField()
+    content = content_page_field()
 
     def __str__(self):
         return self.title
@@ -52,7 +56,7 @@ class PageSection(AuditedMixin):
 
 
 class Post(AuditedMixin, ContentMixin):
-    content = HTMLField()
+    content = content_post_field()
     def str(self):
         return slugify(self.content)[0:20]
     
@@ -61,7 +65,7 @@ class Post(AuditedMixin, ContentMixin):
         return str(self)
 
 class Comment(AuditedMixin, ContentMixin):
-    content = HTMLField()
+    content = content_comment_field()
     def str(self):
         return slugify(self.content)[0:20]
     

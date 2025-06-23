@@ -5,7 +5,7 @@ from .forms import ManaUserCreationForm, ManaUserChangeForm
 from .models import ManaUser
 
 
-class ManaUserAdmin:
+class ManaUserAdmin(UserAdmin):
 
     add_form = ManaUserCreationForm
     form = ManaUserChangeForm
