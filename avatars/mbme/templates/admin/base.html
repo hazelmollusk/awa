@@ -1,4 +1,9 @@
 {% extends 'admin/base.html' %}
+{% block extrahead %}
+{% endblock %} 
 {% block extrastyle %}
-  {% comment %}.ql-editor, .ql-container { height: 80%; !important }{% endcomment %}
+ <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  {% comment %} <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css"/> {% endcomment %}
 {% endblock %}

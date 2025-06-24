@@ -5,13 +5,14 @@ from django.db.models.fields import TextField
 
 # from tinymce.models import HTMLField
 # from ckeditor.fields import RichTextField
-from markdownx.models import MarkdownxField
+# from markdownx.models import MarkdownxField
+from django_summernote.fields import SummernoteTextField
 
 from apps.mana.models import AuditedMixin
 from apps.rakau.models import Context, ContentMixin
 
-content_page_field = lambda: MarkdownxField()
-content_post_field = lambda: MarkdownxField()
+content_page_field = lambda: SummernoteTextField()
+content_post_field = lambda: SummernoteTextField()
 content_comment_field = lambda: TextField()
 
 class PostContainer(models.Model):

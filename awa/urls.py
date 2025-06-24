@@ -112,9 +112,10 @@ urlpatterns = [
     ),
     path(f"{config.paths.auth}/", include(auth_urls, namespace="awa.auth")),
     # path("grappelli/", include("grappelli.urls")),
-    # path("tinymce/", include("tinymce.urls")),
+    # path("tinymce/", include("tinymce.urls")),from django_summernote.fields import SummernoteTextField
     # path("mce_filebrowser/", include("mce_filebrowser.urls")),
-    path(f"{config.paths.resources}/mdx", include('markdownx.urls')),
+    # path(f"{config.paths.resources}/mdx", include('markdownx.urls')),
+    path(f"{config.paths.resources}/sn/", include('django_summernote.urls')),
     path(f"{config.paths.api}/", include(router.urls)),
     path(f"{config.paths.api_auth}/", include("rest_framework.urls", namespace="rest_framework")),
     path(f"{config.paths.admin}/", admin.site.urls),

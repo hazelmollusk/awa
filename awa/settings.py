@@ -20,9 +20,12 @@ INSTALLED_APPS = [
     # "mce_filebrowser",
     # "django_quill",
     # "ckeditor",
-    "markdownx",
+    # "markdownx",
     # "grappelli",
     # "filebrowser",
+    # "djangocms_text",
+    "fontawesomefree",
+    "django_summernote",
     # django defaults
     "django.contrib.admin",
     "django.contrib.auth",
@@ -65,6 +68,7 @@ CSRF_TRUSTED_ORIGINS = [f"{scheme}://{d}" for d in DOMAINS]
 CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
+
 
 DATABASES = config.databases.to_dict() or {}
 SECRET_KEY = config.secret_key or "aWaSecRet"
@@ -140,7 +144,7 @@ LOGGING = {
     },
     "root": {
         "handlers": ["console"],
-        "level": "DEBUG",
+        "level": "INFO",
     },
 }
 
@@ -182,6 +186,31 @@ DIRECTORY = ""
 #     "file_browser_image_browse_url": '{% url "filebrowser:browse" %}',
 # }
 # TINYMCE_FILEBROWSER = True
+
+
+SUMMERNOTE_CONFIG = {
+    "iframe":False,
+    "summernote": {
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'strikethrough', 'clear']],
+            # ['fontname', ['fontname']],
+            # ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            # ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            # ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+
+        # "toolbar":{
+        #     ('style', ('style',),),
+        #     ('font', ('bold', 'underline', 'clear')),
+        #     ('para', ('ul', 'ol', 'paragraph')),
+        # }
+        "width":"600px",
+        "height":"300px",
+    }
+}
 
 QUILL_CONFIGS = {
     "default": {
