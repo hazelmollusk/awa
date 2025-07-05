@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 export root=$(realpath "$(dirname $BASH_SOURCE)/../")
-source "$root/bin/include.sh"
 export PYTHONSTARTUP=$root/bin/awa_include.py
 
 py="$root/.env/bin/python"
