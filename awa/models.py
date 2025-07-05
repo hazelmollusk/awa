@@ -1,7 +1,6 @@
 from functools import partial, cache
 from django.db import models
-from apps.mana.models import AuditedMixin
-from apps.rakau.models import Context, ContextPath
+from apps.people.models import AuditedMixin
 from awa.settings import config
 from awa.util.attr_dict import FALSE
 

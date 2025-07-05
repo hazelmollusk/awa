@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import AwaUserCreationForm, AwaUserChangeForm
-from .models import AwaUser
+from .forms import PersonCreationForm, PersonChangeForm
+from .models import Person
 
-@admin.register(AwaUser)
-class AwaUserAdmin(UserAdmin):
+@admin.register(Person)
+class PersonAdmin(UserAdmin):
 
-    add_form = AwaUserCreationForm
-    form = AwaUserChangeForm
-    model = AwaUser
+    add_form = PersonCreationForm
+    form = PersonChangeForm
+    model = Person
     list_display = (
         "email",
         "is_staff",

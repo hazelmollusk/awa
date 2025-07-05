@@ -4,7 +4,7 @@ from django_currentuser.db.models import CurrentUserField
 from guardian.mixins import GuardianUserMixin
 from guardian.models import GroupObjectPermissionAbstract, UserObjectPermissionAbstract
 
-from .managers import PeopleManager
+from .managers import PersonManager
 
 
 class AuditedMixin(models.Model):
@@ -24,9 +24,9 @@ class AuditedMixin(models.Model):
         abstract = True
 
 
-class AwaUser(AbstractUser, GuardianUserMixin, AuditedMixin):
+class Person(AbstractUser, GuardianUserMixin, AuditedMixin):
     # fields go here
 
     REQUIRED_FIELDS = []
 
-    objects = PeopleManager()
+    objects = PersonManager()

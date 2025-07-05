@@ -13,6 +13,8 @@ from apps.people.models import AuditedMixin
 content_page_field = lambda: SummernoteTextField()
 
 class Page(AuditedMixin):
+    title = models.CharField(max_length=100)
+    slug = models.SlugField()
     draft = models.BooleanField(default=True)
     visible = models.BooleanField(default=False)
 

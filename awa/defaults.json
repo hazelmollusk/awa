@@ -11,11 +11,14 @@
       "label": "static"
     }
   },
-  "urls": {
+  "paths": {
     "prefix": "/",
+    "i18n": "i18n",
     "admin": "admin",
-    "blog": "blog",
-    "auth": "auth"
+    "auth": "auth",
+    "pages": "pg",
+    "posts": "posts",
+    "groups": "groups"
   },
   "apps": [
     "photologue"

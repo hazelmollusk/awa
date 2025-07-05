@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # 3rd party django apps
     "nested_admin",
     "django_extensions",
@@ -42,13 +43,14 @@ INSTALLED_APPS = [
     "social_django",
     "sortedm2m",
     "simple_history",
+
     # awa modules
-    "apps.mana",  # authnz
-    "apps.rakau",  # context tree
-    "awa",  # core
-    "apps.huri",  # ui
-    "apps.tohu",  # sign, badge, symbol (tags)
-    "apps.tuhi",  # content
+    "apps.people",
+    "awa",
+    "apps.pages", 
+    "apps.posts",
+    "apps.tags",
+
 ] + custom_apps
 
 # SITE_ID = config.site_id or 1
@@ -77,7 +79,7 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
 CSRF_USE_SESSIONS = True
 
-AUTH_USER_MODEL = "mana.ManaUser"
+AUTH_USER_MODEL = "people.Person"
 GUARDIAN_MONKEY_PATCH_USER = False
 # GUARDIAN_MONKEY_PATCH = False
 # GUARDIAN_USER_OBJ_PERMS_MODEL = 'mana.UserPermission'
@@ -168,30 +170,8 @@ MEDIA_URL = config.storages.default.OPTIONS.location or "media/"
 AWS_ACCESS_KEY_ID = config.connections.aws.key
 AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
 
-MARKDOWNX_URLS_PATH = f"{config.paths.prefix}/{config.paths.resources}/mdx"
-
-TINYMCE_DEFAULT_CONFIG = {
-    "file_browser_callback": "mce_filebrowser",
-    "height": "500px",
-    "plugins": "advlist autolink lists link image charmap searchreplace visualblocks code insertdatetime media table paste code help wordcount spellchecker",
-    "toolbar": "undo redo | formatselect | bold italic underline strikethrough | alignleft | aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | insertfile image media pageembed template link codesample | ltr rtl | showcomments addcomment code",
-    "custom_undo_redo_levels": 10,
-    "entity_encoding": "raw",
-}
-FILEBROWSER_DIRECTORY = ""
-DIRECTORY = ""
-
-# TINYMCE_DEFAULT_CONFIG = {
-#     "file_browser_callback": "filebrowser_callback",
-#     "relative_urls": False,
-#     "remove_script_host": False,
-#     "file_browser_image_browse_url": '{% url "filebrowser:browse" %}',
-# }
-# TINYMCE_FILEBROWSER = True
-
 from django_summernote.settings import ATTRIBUTES
 ATTRIBUTES["img"] = ["src","height","width","style","class"]
-
 SUMMERNOTE_CONFIG = {
     "iframe":True,
     "summernote": {
@@ -213,30 +193,6 @@ SUMMERNOTE_CONFIG = {
         # }
         "width":"600px",
         "height":"300px",
-    }
-}
-
-QUILL_CONFIGS = {
-    "default": {
-        "theme": "bubble",
-        "modules": {
-            "syntax": True,
-            "toolbar": [
-                [
-                    {"font": []},
-                    {"align": []},
-                    "bold",
-                    "italic",
-                    "underline",
-                    "strike",
-                    "blockquote",
-                    {"color": []},
-                    {"background": []},
-                ],
-                ["code-block", "link"],
-                ["clean"],
-            ],
-        },
     }
 }
 
@@ -271,7 +227,7 @@ AUTHENTICATION_BACKENDS = [
     "social_core.backends.twitter.TwitterOAuth",
     "django.contrib.auth.backends.ModelBackend",
     "guardian.backends.ObjectPermissionBackend",
-    "apps.mana.backends.ManaBackend",
+    "apps.people.backends.AwaBackend",
 ]
 LOGIN_URL = "awa:login"
 LOGIN_REDIRECT_URL = "index"  # FIXME: "awa:index"

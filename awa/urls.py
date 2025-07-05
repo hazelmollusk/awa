@@ -11,7 +11,6 @@ from django.conf import settings
 from awa.settings import config
 
 # from re import match
-from apps.rakau.models import ContentNode, ContextPath
 
 from .api import router
 from .views import (
@@ -25,22 +24,6 @@ from .views import (
 from rest_framework import routers
 from .views import SiteLinkViewSet
 app_name = "awa"
-
-AWA_PATHS = [
-    # global
-    "admin",
-    "auth",
-    "i18n",
-    # # per-user
-    # 'blog',
-    # 'profile',
-]
-
-config.setdefault("paths", {})
-for url_path in AWA_PATHS:
-    config.paths.setdefault(url_path, url_path)
-
-config.paths.setdefault("user", "~<slug:username>")
 
 storage_urls = []
 # list(
@@ -104,16 +87,14 @@ urlpatterns = [
         include("social_django.urls", namespace="awa.social"),
     ),
     path(f"{config.paths.auth}/", include(auth_urls, namespace="awa.auth")),
-    # path("grappelli/", include("grappelli.urls")),
-    # path("tinymce/", include("tinymce.urls")),from django_summernote.fields import SummernoteTextField
-    # path("mce_filebrowser/", include("mce_filebrowser.urls")),
-    # path(f"{config.paths.resources}/mdx", include('markdownx.urls')),
     path(f"{config.paths.resources}/sn/", include('django_summernote.urls')),
     path(f"{config.paths.resources}/na/", include('nested_admin.urls')),
-    path(f"{config.paths.api}/auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path(f"{config.paths.api}/{config.paths.auth}/", 
+        include("rest_framework.urls", namespace="rest_framework")),
     path(f"{config.paths.api}/", include(router.urls)),
     path(f"{config.paths.admin}/", admin.site.urls),
+    path(f"{config.paths.pages}/", include("apps.pages.urls")),
+    path("", include("apps.posts.urls")),
     path("", include(local_urls)),
     # path("", include(anchor_urls)),
-    path("", include("apps.rakau.urls")),
 ]

@@ -10,7 +10,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
 
-class PeopleManager(BaseUserManager):
+class PersonManager(BaseUserManager):
     def create_user(self, **kw):
         # auth could come from anywhere, so we may not
         # have things like email, or even a password

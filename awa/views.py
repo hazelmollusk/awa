@@ -18,8 +18,6 @@ from django.contrib.auth import logout as auth_logout, get_user_model
 # from awa.settings import config
 from django.shortcuts import redirect, render
 
-from apps.rakau.models import ContentNode
-from apps.rakau.views import view_context
 from .models import SiteLink
 from .serializers import SiteLinkSerializer
 from rest_framework import viewsets, permissions
