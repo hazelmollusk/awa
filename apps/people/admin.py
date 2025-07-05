@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import ManaUserCreationForm, ManaUserChangeForm
-from .models import ManaUser
+from .forms import AwaUserCreationForm, AwaUserChangeForm
+from .models import AwaUser
 
+@admin.register(AwaUser)
+class AwaUserAdmin(UserAdmin):
 
-class ManaUserAdmin(UserAdmin):
-
-    add_form = ManaUserCreationForm
-    form = ManaUserChangeForm
-    model = ManaUser
+    add_form = AwaUserCreationForm
+    form = AwaUserChangeForm
+    model = AwaUser
     list_display = (
         "email",
         "is_staff",
@@ -47,5 +47,3 @@ class ManaUserAdmin(UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
-
-admin.site.register(ManaUser, UserAdmin)

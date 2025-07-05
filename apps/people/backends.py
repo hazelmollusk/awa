@@ -1,8 +1,8 @@
 from django.contrib.auth.backends import ModelBackend
-from .models import ManaUser
+from .models import AwaUser
 
 
-class ManaBackend(ModelBackend):
+class AwaBackend(ModelBackend):
     # def authenticate(self, request, username = None, password = None, **kwargs):
     #     return super().authenticate(request)
 
@@ -11,15 +11,15 @@ class ManaBackend(ModelBackend):
 
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
-            user = ManaUser.objects.get(username=username)
+            user = AwaUser.objects.get(username=username)
             return user if user.check_password(password) else None
-        except ManaUser.DoesNotExist:
+        except AwaUser.DoesNotExist:
             return None
 
     def get_user(self, user_id):
         try:
-            return ManaUser.objects.get(pk=user_id)
-        except ManaUser.DoesNotExist:
+            return AwaUser.objects.get(pk=user_id)
+        except AwaUser.DoesNotExist:
             return None
 
     def user_can_authenticate(self, user):

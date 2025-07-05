@@ -1,15 +1,15 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import ManaUser
+from .models import AwaUser
 
 
-class ManaUserCreationForm(UserCreationForm):
+class AwaUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
-        model = ManaUser
+        model = AwaUser
 
 
-class ManaUserChangeForm(UserChangeForm):
+class AwaUserChangeForm(UserChangeForm):
 
     class Meta(UserChangeForm.Meta):
-        model = ManaUser
+        model = AwaUser

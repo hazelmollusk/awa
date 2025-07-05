@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ManaConfig(AppConfig):
+class PeopleConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.mana"
-    verbose_name = "Mana (Users)"
+    name = "apps.people"
+    verbose_name = "People"
