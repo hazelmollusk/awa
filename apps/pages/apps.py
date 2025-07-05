@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class TuhiConfig(AppConfig):
+class PagesConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.tuhi"
+    name = "apps.pages"
     verbose_name = "Pages"

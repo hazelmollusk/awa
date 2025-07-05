@@ -1,11 +1,8 @@
-from django.shortcuts import render  # , get_object_or_404
+from django.shortcuts import render , get_object_or_404
 # from logging import warning
-from apps.rakau.decorators import context_view
 
+from .models import Page
 
-@context_view("tuhi.Page")
-def view_page(request, target, context, *args, **kwargs):
-    return render(request, "pages/page.html", {
-        "page": target,
-        "context": context
-    })
+def view_page(request, slug, *args, **kwargs):
+    page = get_object_or_404(Page, slug=slug)
+    return render(request, "pages/page.html", {"page": page,})

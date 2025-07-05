@@ -4,12 +4,10 @@ from django import forms
 from guardian.admin import GuardedModelAdmin, GuardedModelAdminMixin
 from nested_admin import NestedModelAdmin, NestedStackedInline
 
-# from mce_filebrowser.admin import MCEFilebrowserAdmin
-# from markdownx.admin import MarkdownxModelAdmin
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.fields import SummernoteTextField
 
-from .models import Page, Folder, PageSection, PageSectionImage, Post, Comment
+from .models import Page, PageSection, PageSectionImage
 
 AUDIT_FIELDS = ["created_by", "created", "modified"]
 
@@ -52,10 +50,3 @@ class PageAdmin(NestedModelAdmin, GuardedModelAdminMixin):
         ("Audit", {"fields": AUDIT_FIELDS}),
     ]
     inlines = (PageSectionAdmin,)
-
-
-class PostAdmin(SummernoteModelAdmin): pass
-
-admin.site.register(Post, PostAdmin)
-# admin.site.register(Page, PageAdmin)
-admin.site.register(Folder)
