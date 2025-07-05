@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 3rd party django apps
+    "nested_admin",
     "django_extensions",
     "guardian",
     "rest_framework",
@@ -148,6 +149,7 @@ LOGGING = {
     },
 }
 
+MEDIA_URL = 'media/'
 # MEDIA_URL = config.storages.default.base_url or "media/"
 # MEDIA_ROOT = f"{BASE_DIR}/.media"
 # STATIC_URL = config.storages.staticfiles.base_url or "static/"
@@ -187,9 +189,11 @@ DIRECTORY = ""
 # }
 # TINYMCE_FILEBROWSER = True
 
+from django_summernote.settings import ATTRIBUTES
+ATTRIBUTES["img"] = ["src","height","width","style","class"]
 
 SUMMERNOTE_CONFIG = {
-    "iframe":False,
+    "iframe":True,
     "summernote": {
         'toolbar': [
             ['style', ['style']],

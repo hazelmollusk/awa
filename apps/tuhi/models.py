@@ -56,6 +56,13 @@ class PageSection(AuditedMixin):
         verbose_name = "section"
 
 
+class PageSectionImage(models.Model):
+    section = models.ForeignKey(PageSection, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField()
+    title = models.CharField(max_length=50, blank=True, null=True)
+    class Meta:
+        verbose_name = 'image'
+
 class Post(AuditedMixin, ContentMixin):
     content = content_post_field()
     def str(self):

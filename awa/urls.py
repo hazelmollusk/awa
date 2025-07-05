@@ -13,6 +13,7 @@ from awa.settings import config
 # from re import match
 from apps.rakau.models import ContentNode, ContextPath
 
+from .api import router
 from .views import (
     view_user,
     stylesheet,
@@ -96,14 +97,6 @@ api_urls = (
 #     app_name,
 # )
 
-
-router = routers.DefaultRouter()
-
-
-router.register(r"sitelinks", SiteLinkViewSet)
-# router.register(r'users', UserViewSet)
-# router.register(r'groups', GroupViewSet)
-
 urlpatterns = [
     path(f"{config.paths.i18n}/", include("django.conf.urls.i18n")),
     path(
@@ -116,8 +109,9 @@ urlpatterns = [
     # path("mce_filebrowser/", include("mce_filebrowser.urls")),
     # path(f"{config.paths.resources}/mdx", include('markdownx.urls')),
     path(f"{config.paths.resources}/sn/", include('django_summernote.urls')),
+    path(f"{config.paths.resources}/na/", include('nested_admin.urls')),
+    path(f"{config.paths.api}/auth/", include("rest_framework.urls", namespace="rest_framework")),
     path(f"{config.paths.api}/", include(router.urls)),
-    path(f"{config.paths.api_auth}/", include("rest_framework.urls", namespace="rest_framework")),
     path(f"{config.paths.admin}/", admin.site.urls),
     path("", include(local_urls)),
     # path("", include(anchor_urls)),

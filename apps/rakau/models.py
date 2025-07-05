@@ -43,7 +43,6 @@ class ContextError(Exception):
 
 
 class ContextManager(InheritanceManager):
-
     @staticmethod
     def slugify(text):
         return re.sub(r"[^A-Za-z0-9_]+", "-", text).strip("-")
@@ -119,10 +118,8 @@ class ContextPath(Context):
 
 class ContextFile(ContextPath):
     file = models.FileField()
-
     def __str__(self):
         return self.file.name
-
     def save(self, *a, **kw):
         if not self.path:
             self.path = ContextManager.slugify(self.file.name)
@@ -191,7 +188,7 @@ class ContentMixin(models.Model):
     def save(self, *a, **kw):
         super().save(*a, **kw)
         if not self.context:
-            pass  # TODO
+            pass
 
     class Meta:
         abstract = True
@@ -214,7 +211,11 @@ class ContextRoot(Context):
 
     @property
     def full_path(self):
-        return self.sites.first().domain
+        from django.urls.shortcuts import get_script_name
+        return '/'.join([
+            self.sites.first().domain,
+            get_script_name
+        ])
 
     class Meta:
         pass

@@ -1,19 +1,19 @@
 from django.contrib import admin
 
-from .models import Theme, ThemeIcon
+from .models import AwaTheme, AwaThemeIcon
 
 
-class IconAdmin(admin.TabularInline):
+class AwaIconAdmin(admin.TabularInline):
     fields = ['icon', 'icon_type']
-    model = ThemeIcon
+    model = AwaThemeIcon
     # min_num = 1
     extra = 1
 
 
-class ThemeAdmin(admin.ModelAdmin):
-    model = Theme
-    inlines = [IconAdmin]
+class AwaThemeAdmin(admin.ModelAdmin):
+    model = AwaTheme
+    inlines = [AwaIconAdmin]
 
 
 # admin.site.register(Theme, ThemeAdmin)
-admin.site.register(Theme, ThemeAdmin)
+admin.site.register(AwaTheme, AwaThemeAdmin)

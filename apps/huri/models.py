@@ -6,7 +6,7 @@ from colorfield.fields import ColorField
 from awa.models import IconMixin
 
 
-class Theme(models.Model):
+class AwaTheme(models.Model):
     name = models.CharField(max_length=32, unique=True)
     label = ColorField(default='#000000')
     label_bg = ColorField(default='#FFFFFF')
@@ -22,7 +22,7 @@ ICON_TYPE_POSIX = ICON_TYPE_PATH.as_posix()
 ICON_MATCH = f'.*\\.({'|'.join(ICON_EXTENSIONS)})$'
 
 
-class ThemeIcon(IconMixin):
+class AwaThemeIcon(IconMixin):
     icon_type = models.FilePathField(
         max_length=20,
         recursive=True,
@@ -30,7 +30,7 @@ class ThemeIcon(IconMixin):
         path=ICON_TYPE_POSIX,
         match=ICON_MATCH)
     theme = models.ForeignKey(
-        Theme,
+        AwaTheme,
         related_name='icons',
         on_delete=models.CASCADE)
 
