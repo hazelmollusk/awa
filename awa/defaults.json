@@ -18,7 +18,8 @@
     "auth": "auth",
     "pages": "pg",
     "posts": "posts",
-    "groups": "groups"
+    "groups": "groups",
+    "resources": "_res"
   },
   "apps": [
     "photologue"

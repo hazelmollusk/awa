@@ -14,7 +14,6 @@ from awa.settings import config
 
 from .api import router
 from .views import (
-    view_user,
     stylesheet,
     script,
     login,
