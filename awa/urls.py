@@ -98,6 +98,6 @@ urlpatterns = [
     path(f"{config.paths.admin}/", admin.site.urls),
     path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
-    path("pg/<str:slug>", ViewPageSet().as_view(), name="index"),
+    path("", ViewPageSet().as_view(), name="index"),
     # path("", include(anchor_urls)),
 ]

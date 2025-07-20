@@ -10,7 +10,11 @@ from .models import Page
 
 
 class ViewPageSet(APIView):
+    queryset = Page.objects.all()
+
     def get(self, request, slug=None, uuuid=None, *args, **kwargs):
+        if not slug:
+            slug = "index"
         page = get_object_or_404(Page, slug=slug)
         return render(
             request,
