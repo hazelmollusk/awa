@@ -1,5 +1,5 @@
 from django.contrib.auth.backends import ModelBackend
-from .models import AwaUser
+from .models import Person
 
 
 class AwaBackend(ModelBackend):
@@ -11,15 +11,15 @@ class AwaBackend(ModelBackend):
 
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
-            user = AwaUser.objects.get(username=username)
+            user = Person.objects.get(username=username)
             return user if user.check_password(password) else None
-        except AwaUser.DoesNotExist:
+        except Person.DoesNotExist:
             return None
 
     def get_user(self, user_id):
         try:
-            return AwaUser.objects.get(pk=user_id)
-        except AwaUser.DoesNotExist:
+            return Person.objects.get(pk=user_id)
+        except Person.DoesNotExist:
             return None
 
     def user_can_authenticate(self, user):

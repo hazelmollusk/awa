@@ -5,16 +5,18 @@
   "storages": {
     "type": "default",
     "default": {
-      "label": "media"
+      "label": "media",
+      "location": "media/"
     },
     "staticfiles": {
-      "label": "static"
+      "label": "static",
+      "location": "static/"
     }
   },
   "paths": {
     "prefix": "/",
     "i18n": "i18n",
-    "admin": "admin",
+    "adyouin": "admin",
     "auth": "auth",
     "pages": "pg",
     "posts": "posts",

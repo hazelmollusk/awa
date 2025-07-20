@@ -12,6 +12,7 @@ from apps.people.models import AuditedMixin
 
 content_page_field = lambda: SummernoteTextField()
 
+
 class Page(AuditedMixin):
     title = models.CharField(max_length=100)
     slug = models.SlugField()
@@ -33,8 +34,11 @@ class PageSection(AuditedMixin):
 
 
 class PageSectionImage(models.Model):
-    section = models.ForeignKey(PageSection, on_delete=models.CASCADE, related_name="images")
+    section = models.ForeignKey(
+        PageSection, on_delete=models.CASCADE, related_name="images"
+    )
     image = models.ImageField()
     title = models.CharField(max_length=50, blank=True, null=True)
+
     class Meta:
-        verbose_name = 'image'
+        verbose_name = "image"

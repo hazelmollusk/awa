@@ -1,6 +1,7 @@
 from glob import glob
 from pathlib import Path
 from awa.util import AwaConfig
+
 # from filebrowser.sites import site
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     # "grappelli",
     # "filebrowser",
     # "djangocms_text",
+    # needed fror admin interface
     "fontawesomefree",
     "django_summernote",
     # django defaults
@@ -34,7 +36,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # 3rd party django apps
     "nested_admin",
     "django_extensions",
@@ -43,14 +44,12 @@ INSTALLED_APPS = [
     "social_django",
     "sortedm2m",
     "simple_history",
-
     # awa modules
     "apps.people",
     "awa",
-    "apps.pages", 
+    "apps.pages",
     "apps.posts",
     "apps.tags",
-
 ] + custom_apps
 
 # SITE_ID = config.site_id or 1
@@ -107,11 +106,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_currentuser.middleware.ThreadLocalUserMiddleware",
     "simple_history.middleware.HistoryRequestMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "social_django.middleware.SocialAuthExceptionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    # "django_currentuser.middleware.ThreadLocalUserMiddleware",
 ]
 
 ROOT_URLCONF = "awa.urls"
@@ -130,7 +129,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "social_django.context_processors.backends",
-                'social_django.context_processors.login_redirect',
+                "social_django.context_processors.login_redirect",
                 "awa.context_processors.awa",
             ],
         },
@@ -151,7 +150,7 @@ LOGGING = {
     },
 }
 
-MEDIA_URL = 'media/'
+MEDIA_URL = "media/"
 # MEDIA_URL = config.storages.default.base_url or "media/"
 # MEDIA_ROOT = f"{BASE_DIR}/.media"
 # STATIC_URL = config.storages.staticfiles.base_url or "static/"
@@ -171,29 +170,29 @@ AWS_ACCESS_KEY_ID = config.connections.aws.key
 AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
 
 from django_summernote.settings import ATTRIBUTES
-ATTRIBUTES["img"] = ["src","height","width","style","class"]
+
+ATTRIBUTES["img"] = ["src", "height", "width", "style", "class"]
 SUMMERNOTE_CONFIG = {
-    "iframe":True,
+    "iframe": True,
     "summernote": {
-        'toolbar': [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'strikethrough', 'clear']],
+        "toolbar": [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "strikethrough", "clear"]],
             # ['fontname', ['fontname']],
             # ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ["para", ["ul", "ol", "paragraph"]],
             # ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
+            ["insert", ["link", "picture", "video"]],
             # ['view', ['fullscreen', 'codeview', 'help']],
         ],
-
         # "toolbar":{
         #     ('style', ('style',),),
         #     ('font', ('bold', 'underline', 'clear')),
         #     ('para', ('ul', 'ol', 'paragraph')),
         # }
-        "width":"600px",
-        "height":"300px",
-    }
+        "width": "600px",
+        "height": "300px",
+    },
 }
 
 PASSWORD_VALIDATION = "django.contrib.auth.password_validation"

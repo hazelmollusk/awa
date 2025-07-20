@@ -32,10 +32,10 @@ fi
 django_default='>5'
 django_version=${django_version:=$django_default}
 echo -n "django ($django_version) "
-pip install "django$django_version"
+pip install "django$django_version" >/dev/null 2>&1
 
 echo -n "node "
-npm install --quiet
+npm install --quiet >/dev/null 2>&1
 
 echo "complete!"
 
@@ -54,11 +54,11 @@ echo -n "files "
 awa collectstatic --noinput -v 0 >/dev/null 2>&1
 
 echo -n "awa "
-awa init_awa $* # >/dev/null 2>&1
+awa init_awa $* >/dev/null 2>&1
 
-echo -n "fixtures"
+echo -n "fixtures "
 for fix in hazel-admin; do
-    awa loaddata $fix
+    awa loaddata $fix >/dev/null 2>&1
 done
 
 echo "complete!"

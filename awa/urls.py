@@ -21,7 +21,9 @@ from .views import (
 )
 
 from rest_framework import routers
+from apps.pages.views import ViewPageSet
 from .views import SiteLinkViewSet
+
 app_name = "awa"
 
 storage_urls = []
@@ -86,14 +88,16 @@ urlpatterns = [
         include("social_django.urls", namespace="awa.social"),
     ),
     path(f"{config.paths.auth}/", include(auth_urls, namespace="awa.auth")),
-    path(f"{config.paths.resources}/sn/", include('django_summernote.urls')),
-    path(f"{config.paths.resources}/na/", include('nested_admin.urls')),
-    path(f"{config.paths.api}/{config.paths.auth}/", 
-        include("rest_framework.urls", namespace="rest_framework")),
+    path(f"{config.paths.resources}/sn/", include("django_summernote.urls")),
+    path(f"{config.paths.resources}/na/", include("nested_admin.urls")),
+    path(
+        f"{config.paths.api}/{config.paths.auth}/",
+        include("rest_framework.urls", namespace="rest_framework"),
+    ),
     path(f"{config.paths.api}/", include(router.urls)),
     path(f"{config.paths.admin}/", admin.site.urls),
-    path(f"{config.paths.pages}/", include("apps.pages.urls")),
-    path("", include("apps.posts.urls")),
+    path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
+    path("pg/<str:slug>", ViewPageSet().as_view(), name="index"),
     # path("", include(anchor_urls)),
 ]
