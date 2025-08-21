@@ -110,7 +110,7 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "social_django.middleware.SocialAuthExceptionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    # "django_currentuser.middleware.ThreadLocalUserMiddleware",
+    "django_currentuser.middleware.ThreadLocalUserMiddleware",
 ]
 
 ROOT_URLCONF = "awa.urls"

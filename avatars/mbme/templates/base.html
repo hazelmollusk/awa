@@ -13,7 +13,6 @@
       {% endblock %}
     </title>
     {% block style %}
-      {% include 'blog/css.html' %}
       <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='base' %}" />
       <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='fb' %}" />
     {% endblock %}
@@ -27,7 +26,6 @@
 
     {% endblock %}
   </head>
-
   <body>
     <div class="page">
       {% block header %}
@@ -68,7 +66,7 @@
           <div>
             <div class="sig">
               <a href="//{{ site.domain }}/~matt/resume/matt-barry.pdf">Technologist</a>
-              | <a href="//{{ site.domain }}">Discordian</a>
+              | <a href="//hazelmollusk.com">Discordian</a>
             </div>
             <div>
               <a class="gpg" href="{% static 'id/matt.barry.pub' %}">RSA4096 FBB8BEE70CA2937783DA20D5B4B94F7D7D2C0CA6</a>

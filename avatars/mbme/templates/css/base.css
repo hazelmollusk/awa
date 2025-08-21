@@ -29,8 +29,13 @@ pre {
   min-height: 100%;
 }
 
+.project_label {
+  font-family: 'Lavishly Yours', cursive !important;
+  font-size: small;
+}
+
 div.site_label {
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Lavishly Yours', cursive;
   font-size: large;
   color: black;
   text-align: right;

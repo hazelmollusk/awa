@@ -17,6 +17,7 @@ FONTS = [
     "Acme",
     "Nothing+You+Could+Do",
     "VT323",
+    'Lavishly+Yours',
     "Jura",
     "Josefin+Sans",
     "Matemasie",
