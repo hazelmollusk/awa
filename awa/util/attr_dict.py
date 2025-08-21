@@ -7,12 +7,13 @@
 def is_internal(key):
     return isinstance(key, str) and key.isidentifier() and key.startswith("_")
 
+
 # TODO trest _list_class like _dict_class per-instance
 class AttrContainer(object):
     _dict_class = None
     _list_class = None
     _instance_dict_class = None
-    
+
     def _walk(self, node):
         if isinstance(node, dict):
             items = node.items()
@@ -36,14 +37,14 @@ class AttrContainer(object):
         if kls is not None:
             val, _ = kls(val, dict_class=self._dict_class), True
         return val
-    
+
 
 class AttrList(list, AttrContainer):
     def __init__(self, iterator_arg=None, dict_class=None):
         if dict_class:
             self._instance_dict_class = dict_class
         self._list_class = type(self)
-        
+
         if iterator_arg:
             self.extend(iterator_arg)
 
@@ -63,7 +64,7 @@ class AttrList(list, AttrContainer):
                 i = i.to_primitive()
             d.append(list(i))
         return d
-        
+
     to_list = to_primitive
 
     def __add__(self, t):
@@ -74,16 +75,12 @@ class AttrList(list, AttrContainer):
 
     def __setitem__(self, i, v):
         if isinstance(i, slice):
-            return super(AttrList, self).__setitem__(
-                i, [self._check(v1) for v1 in v]
-            )
+            return super(AttrList, self).__setitem__(i, [self._check(v1) for v1 in v])
         else:
             return super(AttrList, self).__setitem__(i, self._check(v))
 
     def __setslice__(self, i, j, t):
-        return super(AttrList, self).__setslice__(
-            i, j, [self._check(v) for v in t]
-        )
+        return super(AttrList, self).__setslice__(i, j, [self._check(v) for v in t])
 
 
 class AttrDictCreator(type):
@@ -96,12 +93,12 @@ class AttrDictCreator(type):
 
 class AttrDict(dict, AttrContainer, metaclass=AttrDictCreator):
     _list_class = AttrList
-    
+
     def __init__(self, *args, dict_class=None, **kwargs):
         super().__init__(*args, **kwargs)
         if dict_class:
             self._instance_dict_class = dict_class
-    
+
     @property
     def _dict_class(self):
         return type(self)
@@ -159,7 +156,9 @@ class FalseChain(object):
 
     __getitem__ = __getattr__ = lambda s, *a, **k: s
 
-    # def __str__(s): return ''
+    def __str__(s):
+        return "falsechain"
+
     def __bool__(s):
         return False
 
