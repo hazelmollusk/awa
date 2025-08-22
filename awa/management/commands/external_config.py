@@ -57,7 +57,7 @@ class Command(BaseCommand):
             env_path = config.storages.env.root or ".env"
             if not env_path.startswith("/"):
                 env_path = root_path / env_path
-            project_aliases = sum([p.domains for p in config.projects], [])
+            project_aliases = config.project.domains
             project_domain = project_aliases.pop(0)
             context = {
                 "project_domain": project_domain,
