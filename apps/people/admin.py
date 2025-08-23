@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import PersonCreationForm, PersonChangeForm
 from .models import Person
 
+
 @admin.register(Person)
 class PersonAdmin(UserAdmin):
 
@@ -14,17 +15,28 @@ class PersonAdmin(UserAdmin):
         "email",
         "is_staff",
         "is_active",
+        "is_superuser",
     )
     list_filter = (
+        "username",
         "email",
         "is_staff",
         "is_active",
+        "is_superuser",
     )
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("email", "username", "password")}),
         (
             "Permissions",
-            {"fields": ("is_staff", "is_active", "groups", "user_permissions")},
+            {
+                "fields": (
+                    "is_staff",
+                    "is_active",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                )
+            },
         ),
     )
     add_fieldsets = (
@@ -46,4 +58,3 @@ class PersonAdmin(UserAdmin):
     )
     search_fields = ("email",)
     ordering = ("email",)
-
