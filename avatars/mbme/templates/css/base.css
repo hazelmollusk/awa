@@ -29,7 +29,7 @@ pre {
   min-height: 100%;
 }
 
-.project_label {
+ul.site_nav li.project_label a {
   font-family: 'Lavishly Yours', cursive !important;
   font-size: small;
 }
@@ -213,7 +213,7 @@ ul.site_nav li a:hover {
   -webkit-text-stroke: 1px black;
 
 }
-li.project_link {
+li.project_label {
   width:100%; 
   text-align:right;
 }
@@ -226,16 +226,25 @@ li.project_link {
   width: 100%;
   text-align: center;
 }
+ul.site_nav {
+  width: 100%;
+}
 .tuhi-page {
   color: #444529;
 }
-.tuhi-page h1 {
-  font-family: 'Caveat', script;
+h1 {
+  font-family: 'Acme', serif;
+  font-size: 2em;
+  width: 100;
+  text-align: right;
+  display: block;
 }
 .tuhi-section {
   padding-left: 5%;
   font-family: 'Josefin Sans', sans-serif;
   color: #4b5b18;
 }
-.tuhi-section h2 {}
-.tuhi-content {}
+h2 {
+
+}
+
