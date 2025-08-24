@@ -130,7 +130,7 @@ div.contents {
 }
 
 .contents {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Ojuju', sans-serif;
   font-size: large;
   padding: 10px;
 }
@@ -245,6 +245,7 @@ h1 {
   color: #4b5b18;
 }
 h2 {
-
+  font-family: 'Josefin Sans';
+  font-size: 1.5em;
 }
 

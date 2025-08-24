@@ -19,6 +19,9 @@ class Page(AuditedMixin):
     draft = models.BooleanField(default=True)
     visible = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.slug
+
 
 class PageSection(AuditedMixin):
     page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name="sections")
