@@ -7,23 +7,8 @@ from apps.pages.models import content_page_field
 # Create your models here.
 class Resume(AuditedMixin, models.Model):
     title = models.CharField(max_length=100)
-    owner = models.ForeignKey("people.Person", on_delete=models.CASCADE)
     summary = content_page_field()
-
-
-class Job(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    company = models.CharField(max_length=100)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    description = content_page_field()
-    skills = models.ManyToManyField("Skill")
-    education = models.ManyToManyField("Education")
-    certifications = models.ManyToManyField("Certification")
-
-    def get_absolute_url(self):
-        return reverse("resume_detail", kwargs={"pk": self.pk})
+    skills = models.ManyToManyField("Skill", blank=True)
 
 
 class Organization(models.Model):
@@ -32,8 +17,18 @@ class Organization(models.Model):
     is_school = models.BooleanField(default=False)
     # description = content_page_field()
 
+
+class Job(models.Model):
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, related_name="jobs")
+    title = models.CharField(max_length=100)
+    company = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    description = content_page_field()
+    education = models.ManyToManyField("Education", blank=True)
+    certifications = models.ManyToManyField("Certification", blank=True)
+
     def get_absolute_url(self):
-        name = models.CharField(max_length=100)
         return reverse("resume_detail", kwargs={"pk": self.pk})
 
 

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
-{% block content %}
-
-
+{% block contents %}
+  <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} {{ resume.title }}</h1>
+  <hr />
+  {{ resume.summary|safe }}
+  <h2>Experience</h2>
+  {% for job in resume.jobs.all %}
+    {{ job.company.name }}
+  {% endfor %}
 {% endblock %}
