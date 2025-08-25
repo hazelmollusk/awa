@@ -9,6 +9,8 @@ class Resume(AuditedMixin, models.Model):
     title = models.CharField(max_length=100)
     summary = content_page_field()
     skills = models.ManyToManyField("Skill", blank=True)
+    education = models.ManyToManyField("Education", blank=True)
+    certifications = models.ManyToManyField("Certification", blank=True)
 
 
 class Organization(models.Model):
@@ -25,8 +27,6 @@ class Job(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     description = content_page_field()
-    education = models.ManyToManyField("Education", blank=True)
-    certifications = models.ManyToManyField("Certification", blank=True)
 
     def get_absolute_url(self):
         return reverse("resume_detail", kwargs={"pk": self.pk})
