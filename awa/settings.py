@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.pages",
     "apps.posts",
     "apps.tags",
+    "apps.resume",
 ] + custom_apps
 
 # SITE_ID = config.site_id or 1

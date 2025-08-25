@@ -1,8 +1,78 @@
 from django.db import models
-from awa.apps.people.models import AuditedMixin
+from django.urls import reverse
+from apps.people.models import AuditedMixin
+from apps.pages.models import content_page_field
 
 
 # Create your models here.
 class Resume(AuditedMixin, models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    owner = models.ForeignKey("people.Person", on_delete=models.CASCADE)
+    summary = content_page_field()
+
+
+class Job(models.Model):
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    description = content_page_field()
+    skills = models.ManyToManyField("Skill")
+    education = models.ManyToManyField("Education")
+    certifications = models.ManyToManyField("Certification")
+
+    def get_absolute_url(self):
+        return reverse("resume_detail", kwargs={"pk": self.pk})
+
+
+class Organization(models.Model):
+    name = models.CharField(max_length=100)
+    icon = models.ImageField()
+    is_school = models.BooleanField(default=False)
+    # description = content_page_field()
+
+    def get_absolute_url(self):
+        name = models.CharField(max_length=100)
+        return reverse("resume_detail", kwargs={"pk": self.pk})
+
+
+class Education(models.Model):
+    school = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    degree = models.CharField(max_length=100)
+    field_of_study = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    # description = content_page_field()
+
+    def get_absolute_url(self):
+        name = models.CharField(max_length=100)
+        return reverse("resume_detail", kwargs={"pk": self.pk})
+
+
+class Certification(models.Model):
+    name = models.CharField(max_length=100)
+    organization = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, blank=True, null=True
+    )
+    date = models.DateField()
+    # description = content_page_field()
+
+    def get_absolute_url(self):
+        name = models.CharField(max_length=100)
+        return reverse("resume_detail", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    # description = content_page_field()
+
+    def get_absolute_url(self):
+        name = models.CharField(max_length=100)
+        return reverse("resume_detail", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return self.name

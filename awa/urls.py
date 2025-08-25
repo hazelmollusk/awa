@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 
 from awa.settings import config
+from apps.resume.views import ResumeViewSet
 
 # from re import match
 
@@ -99,6 +100,7 @@ urlpatterns = [
     path(f"{config.paths.admin}/", admin.site.urls),
     path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
+    path("~<str:username>/resume/", ResumeViewSet.as_view(), name="resume"),
     path("", ViewPageSet().as_view(), name="index"),
     # path("", include(anchor_urls)),
 ]
