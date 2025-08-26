@@ -2,7 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import PersonCreationForm, PersonChangeForm
-from .models import Person
+from .models import Person, Profile
+
+
+admin.site.register(Profile)
 
 
 @admin.register(Person)

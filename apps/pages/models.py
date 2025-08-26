@@ -10,7 +10,7 @@ from django_summernote.fields import SummernoteTextField
 
 from apps.people.models import AuditedMixin
 
-content_page_field = lambda: SummernoteTextField()
+content_page_field = lambda *a, **kv: SummernoteTextField(*a, **kv)
 
 
 class Page(AuditedMixin):

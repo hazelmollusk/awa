@@ -6,18 +6,28 @@ from apps.pages.models import content_page_field
 
 # Create your models here.
 class Resume(AuditedMixin, models.Model):
+    owner = models.OneToOneField("people.Person", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     summary = content_page_field()
     skills = models.ManyToManyField("Skill", blank=True)
     education = models.ManyToManyField("Education", blank=True)
     certifications = models.ManyToManyField("Certification", blank=True)
 
+    def get_absolute_url(self):
+        return reverse("resume_detail", kwargs={"username": self.owner.username})
+
+    def __str__(self):
+        return f"{self.owner.first_name}'s Resume: {self.title}"
+
 
 class Organization(models.Model):
     name = models.CharField(max_length=100)
-    icon = models.ImageField()
+    icon = models.ImageField(blank=True, null=True, upload_to="resume/companies/")
     is_school = models.BooleanField(default=False)
+
     # description = content_page_field()
+    def __str__(self):
+        return self.name
 
 
 class Job(models.Model):
@@ -27,6 +37,9 @@ class Job(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     description = content_page_field()
+
+    def __str__(self):
+        return f"{self.title} at {self.company.name}"
 
     def get_absolute_url(self):
         return reverse("resume_detail", kwargs={"pk": self.pk})
@@ -41,7 +54,6 @@ class Education(models.Model):
     # description = content_page_field()
 
     def get_absolute_url(self):
-        name = models.CharField(max_length=100)
         return reverse("resume_detail", kwargs={"pk": self.pk})
 
 
@@ -54,7 +66,6 @@ class Certification(models.Model):
     # description = content_page_field()
 
     def get_absolute_url(self):
-        name = models.CharField(max_length=100)
         return reverse("resume_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
