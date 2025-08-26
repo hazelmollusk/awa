@@ -35,11 +35,14 @@ class Job(models.Model):
     title = models.CharField(max_length=100)
     company = models.ForeignKey(Organization, on_delete=models.CASCADE)
     start_date = models.DateField()
-    end_date = models.DateField()
-    description = content_page_field()
+    end_date = models.DateField(blank=True, null=True)
+    description = content_page_field(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.title} at {self.company.name}"
+        return f"{self.resume.owner.full_name}: {self.title} at {self.company.name}"
+
+    class Meta:
+        ordering = ["-end_date"]
 
 
 class Education(models.Model):

@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
+{% block extrastyle %}
+<link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='resume' %}" />
+{% endblock %}
 {% block contents %}
+<div class="resume">
   {% if not owner %}no owner{% endif %}
   <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} {{ resume.title }}</h1>
   <hr />
   {{ resume.summary|safe }}
   <h2>Experience</h2>
-  <table id='job-list'
+  <table id="job-list">
   {% for job in resume.jobs.all %}
-    <tr><td><img src="{{ job.company.icon }}" class="company-icon"/></td><td>
+    <tr><td class="company-icon"><img src="{{ job.company.icon }}" class="company-icon"/></td><td>
     <h3>{{ job.title }}</h3>
     <h4>{{ job.company.name }}</h4>
     <h5>
       {{ job.start_date|date:'M' }} {{ job.start_date|date:'Y' }}
       -
-      {{ job.end_date|date:'M' }} {{ job.end_date|date:'Y' }}
+      {% if job.end_date %}
+        {{ job.end_date|date:'M' }} {{ job.end_date|date:'Y' }}
+      {% else %}
+        current
+      {% endif %}
     </h5>
     {{ job.description|safe }}
   </td><tr>
   {% endfor %}
   </table>
+</div>
 {% endblock %}

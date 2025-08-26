@@ -48,6 +48,14 @@ div.site_label {
   padding-right: 3%;
 }
 
+hr {
+  border: none;
+  height: 1px;
+  color:#4b5b18;
+  width:80%;
+  margin:10% auto;
+}
+
 ul.site_nav {
   width:100%;
   list-style-type: none;
