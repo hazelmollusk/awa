@@ -41,9 +41,6 @@ class Job(models.Model):
     def __str__(self):
         return f"{self.title} at {self.company.name}"
 
-    def get_absolute_url(self):
-        return reverse("resume_detail", kwargs={"pk": self.pk})
-
 
 class Education(models.Model):
     school = models.ForeignKey(Organization, on_delete=models.CASCADE)
@@ -52,9 +49,6 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     # description = content_page_field()
-
-    def get_absolute_url(self):
-        return reverse("resume_detail", kwargs={"pk": self.pk})
 
 
 class Certification(models.Model):
@@ -65,9 +59,6 @@ class Certification(models.Model):
     date = models.DateField()
     # description = content_page_field()
 
-    def get_absolute_url(self):
-        return reverse("resume_detail", kwargs={"pk": self.pk})
-
     def __str__(self):
         return self.name
 
@@ -75,10 +66,6 @@ class Certification(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     # description = content_page_field()
-
-    def get_absolute_url(self):
-        name = models.CharField(max_length=100)
-        return reverse("resume_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.name
