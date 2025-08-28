@@ -8,3 +8,6 @@ p {
 .resume td.company-icon {
     vertical-align:top;
 }
+.resume-header {
+    margin-left: 80%;
+}

@@ -49,11 +49,11 @@ div.site_label {
 }
 
 hr {
-  border: none;
   height: 1px;
-  color:#4b5b18;
+  border-color:#2a3a08;
   width:80%;
-  margin:10% auto;
+  margin-left:10% auto;
+  margin-right:10% auto;
 }
 
 ul.site_nav {

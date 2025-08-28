@@ -47,8 +47,8 @@ class Job(models.Model):
 
 class Education(models.Model):
     school = models.ForeignKey(Organization, on_delete=models.CASCADE)
-    degree = models.CharField(max_length=100)
-    field_of_study = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100, blank=True, null=True)
+    field_of_study = models.CharField(max_length=100, blank=True, null=True)
     start_date = models.DateField()
     end_date = models.DateField()
     # description = content_page_field()
@@ -64,6 +64,9 @@ class Certification(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["-date"]
 
 
 class Skill(models.Model):

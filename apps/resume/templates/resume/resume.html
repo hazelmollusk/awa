@@ -6,27 +6,59 @@
 {% block contents %}
 <div class="resume">
   {% if not owner %}no owner{% endif %}
-  <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} {{ resume.title }}</h1>
+  <div class="resume-header">
+    <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} {{ resume.title }}</h1>
+    {{ owner.profile.city }} {{ owner.profile.state }} {{ owner.profile.country }}<br/>
+    {{ owner.email }}<br/>
+    {{ owner.profile.phone }}
+  </div>
   <hr />
-  {{ resume.summary|safe }}
+  <p>{{ resume.summary|safe }}</p>
+  <hr />
   <h2>Experience</h2>
   <table id="job-list">
-  {% for job in resume.jobs.all %}
-    <tr><td class="company-icon"><img src="{{ job.company.icon }}" class="company-icon"/></td><td>
-    <h3>{{ job.title }}</h3>
-    <h4>{{ job.company.name }}</h4>
-    <h5>
-      {{ job.start_date|date:'M' }} {{ job.start_date|date:'Y' }}
-      -
-      {% if job.end_date %}
-        {{ job.end_date|date:'M' }} {{ job.end_date|date:'Y' }}
-      {% else %}
-        current
-      {% endif %}
-    </h5>
-    {{ job.description|safe }}
-  </td><tr>
-  {% endfor %}
+    {% for job in resume.jobs.all %}
+      <tr><td class="company-icon"><img src="{{ job.company.icon }}" class="company-icon"/></td>
+      <td>
+        <h3 class="job">{{ job.title }}</h3>
+        <h4>{{ job.company.name }}</h4>
+        <h5>
+          {{ job.start_date|date:'M' }} {{ job.start_date|date:'Y' }}
+          -
+          {% if job.end_date %}
+            {{ job.end_date|date:'M' }} {{ job.end_date|date:'Y' }}
+          {% else %}
+            current
+          {% endif %}
+        </h5>
+        <p>{{ job.description|safe }}</p>
+      </td><tr>
+    {% endfor %}
   </table>
+  <hr/>
+    <h2>Education</h2>
+    <table id="edu-list">
+      {% for edu in resume.education.all %}
+        <tr><td class="company-icon"><img src="{{ edu.company.icon }}" class="company-icon"/></td>
+        <td>
+          <h3 class="edu">{{ edu.title }}</h3>
+          <h4>{{ edu.school.name }}</h4>
+          <p>{% if edu.degree %}{{ edu.degree }}<br/>{% endif %}
+            {{ edu.field_of_study }}</p>
+          <h5>
+            {{ edu.start_date|date:'Y' }}
+            -
+            {% if edu.end_date %}
+              {{ edu.end_date|date:'Y' }}
+            {% else %}
+              current
+            {% endif %}
+          </h5>
+        </td><tr>
+    {% endfor %}
+    </table>
+  <hr/>
+  <h2>Skills</h2>
+  {{ resume.skills.all|join:" &middot; "}}
 </div>
 {% endblock %}
