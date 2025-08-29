@@ -53,6 +53,12 @@ class Education(models.Model):
     end_date = models.DateField()
     # description = content_page_field()
 
+    class Meta:
+        ordering = ["-end_date"]
+
+    def __str__(self):
+        return f"{self.degree} at {self.school.name}"
+
 
 class Certification(models.Model):
     name = models.CharField(max_length=100)

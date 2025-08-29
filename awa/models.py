@@ -3,6 +3,7 @@ from django.db import models
 from apps.people.models import AuditedMixin
 from awa.settings import config
 from awa.util.attr_dict import FALSE
+from django.utils.text import slugify
 
 IMAGE_ROOT = "images"
 
@@ -10,12 +11,11 @@ IMAGE_ROOT = "images"
 @cache
 def image_upload_to(model, filename, role=None):
     return f"{'/'.join(list(filter(lambda x: x not in (None, FALSE), [
-        config.project_name,
+        config.project.name,
         IMAGE_ROOT,
-        model._meta.app_label,
-        Context.objects.slugify(model._meta.verbose_name),
+        str(model._meta.app_label),
+        str(slugify(model._meta.verbose_name)),
         role,
-        Context.objects.slugify(str(model)),
         filename
     ])))}"
 
@@ -43,7 +43,7 @@ ROLES = ("header", "footer", "random")
 ROLE_CHOICES = [(v, v.capitalize()) for v in ROLES]
 
 
-class SiteLink(AuditedMixin, IconMixin):
+class SiteLink(AuditedMixin, IconMixin, models.Model):
     name = models.CharField(max_length=32, blank=True)
     url = models.URLField(max_length=128)
     email = models.EmailField(max_length=128, blank=True)
