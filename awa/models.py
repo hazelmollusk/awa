@@ -10,7 +10,7 @@ IMAGE_ROOT = "images"
 
 @cache
 def image_upload_to(model, filename, role=None):
-    return f"{'/'.join(list(filter(lambda x: x not in (None, FALSE), [
+    return f"{'/'.join(list(filter(lambda x: x not in (None, False, FALSE), [
         config.project.name,
         IMAGE_ROOT,
         str(model._meta.app_label),
