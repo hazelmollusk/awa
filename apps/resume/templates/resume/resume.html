@@ -8,7 +8,8 @@
 <div class="resume">
   {% if not owner %}no owner{% endif %}
   <div class="resume-header">
-    <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} {{ resume.title }}</h1>
+    <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} 
+      {% if resume.title %}{{ resume.title }}{% endif %}</h1>
     {{ owner.profile.city }} {{ owner.profile.state }} {{ owner.profile.country }}<br/>
     {{ owner.email }}<br/>
     {{ owner.profile.phone }}
