@@ -7,7 +7,7 @@ from apps.pages.models import content_page_field
 # Create your models here.
 class Resume(AuditedMixin, models.Model):
     owner = models.OneToOneField("people.Person", on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True, null=True)
     summary = content_page_field()
     skills = models.ManyToManyField("Skill", blank=True)
     education = models.ManyToManyField("Education", blank=True)
