@@ -11,3 +11,7 @@ p {
 .resume-header {
     margin-left: 80%;
 }
+.resume img.company-icon {
+    height:24px;
+    width:auto;
+}
