@@ -150,7 +150,6 @@ LOGGING = {
     },
 }
 
-MEDIA_URL = "media/"
 # MEDIA_URL = config.storages.default.base_url or "media/"
 # MEDIA_ROOT = f"{BASE_DIR}/.media"
 # STATIC_URL = config.storages.staticfiles.base_url or "static/"
@@ -165,6 +164,9 @@ STATICFILES_DIRS = glob(NODE_STATIC_GLOB.as_posix())
 
 STATIC_URL = config.storages.staticfiles.OPTIONS.location or "static/"
 MEDIA_URL = config.storages.default.OPTIONS.location or "media/"
+# FIXME: real bad
+if config.storages.default.BACKEND == "storages.backends.s3.S3Storage":
+    MEDIA_URL = f"https://{config.storages.default.OPTIONS.bucket_name}.s3.amazonaws.com/{config.storages.default.OPTIONS.location}/"
 
 AWS_ACCESS_KEY_ID = config.connections.aws.key
 AWS_SECRET_ACCESS_KEY = config.connections.aws.secret
