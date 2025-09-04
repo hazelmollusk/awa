@@ -5,7 +5,7 @@ from json import loads
 from pathlib import Path
 from functools import reduce
 from awa.util.debug import debug
-from .attr_dict import MissingAttrDict, AttrDict
+from .attr_dict import MissingAttrDict, AttrDict, IdentityMissingAttrDict
 
 
 class ConfigFile(MissingAttrDict):
@@ -119,6 +119,7 @@ class AwaConfig(ConfigFile):
     _retype = {
         # "storage": AttrDict,
         "constants": AttrDict,
+        "paths": IdentityMissingAttrDict,
     }
 
     # WIP: replace with TransformativeConfigs

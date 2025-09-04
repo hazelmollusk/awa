@@ -1,5 +1,6 @@
 # from importlib import import_module
 from django.contrib import admin
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import path, include
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf.urls.static import static
@@ -83,6 +84,19 @@ api_urls = (
 #     app_name,
 # )
 
+
+def user_redirect(request, username=None, *args, **kwargs):
+    get_object_or_404(get_user_model(), username=username)
+    path = request.path + config.paths.posts + "/"
+    return redirect(path)
+
+
+user_urls = [
+    path("", user_redirect),
+    path(f"{config.paths.posts}/", include("apps.posts.urls")),
+    path(f"{config.paths.resume}/", include("apps.resume.urls")),
+]
+
 urlpatterns = [
     path(f"{config.paths.i18n}/", include("django.conf.urls.i18n")),
     path(
@@ -100,7 +114,7 @@ urlpatterns = [
     path(f"{config.paths.admin}/", admin.site.urls),
     path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
-    path("~<str:username>/resume/", ResumeViewSet.as_view(), name="resume"),
+    path("~<str:username>/", include(user_urls)),
     path("", ViewPageSet().as_view(), name="index"),
     # path("", include(anchor_urls)),
 ]

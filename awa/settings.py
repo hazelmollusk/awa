@@ -231,9 +231,9 @@ AUTHENTICATION_BACKENDS = [
     "apps.people.backends.AwaBackend",
 ]
 LOGIN_URL = "awa:login"
-LOGIN_REDIRECT_URL = "index"  # FIXME: "awa:index"
+LOGIN_REDIRECT_URL = "awa:index"  # FIXME: "awa:index"
 LOGOUT_URL = "awa:logout"
-LOGOUT_REDIRECT_URL = "index"  # noqa: F405
+LOGOUT_REDIRECT_URL = "awa:index"  # noqa: F405
 # for extra info
 SOCIAL_AUTH_FACEBOOK_SCOPE = [
     "email",
@@ -257,6 +257,6 @@ SOCIAL_AUTH_PIPELINE = (
 
 # ######### awa ##################
 try:
-    from config.local_settings import *  # noqa
+    from awa.config.local_settings import *  # noqa
 except ImportError:
     pass

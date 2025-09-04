@@ -1,0 +1,6 @@
+{% load static %}
+
+div.post {
+    background-image:url('{% static "posts/postbg.png" %}');
+    background-repeat:none;
+}

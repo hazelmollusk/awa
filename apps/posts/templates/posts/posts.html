@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='posts' %}" />
+{% endblock %}
+
+{% block contents %}
+  {% for post in posts %}
+    <div class="post">{{ post.content|safe }}</div>
+  {% endfor %}
+{% endblock %}

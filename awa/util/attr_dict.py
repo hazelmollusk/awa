@@ -184,7 +184,7 @@ class MissingAttrDict(AttrDict):
             return self.__getitem__(key)
         except KeyError as e:
             if default is not DUMMY_VALUE:
-                return default
+                return default(key) if callable(default) else default
             raise e
 
     def __getitem__(self, key):
@@ -198,3 +198,11 @@ class MissingAttrDict(AttrDict):
                 if callable(self._default_value)
                 else self._default_value
             )
+
+
+class IdentityMissingAttrDict(MissingAttrDict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, default_value=self._default_value, **kwargs)
+
+    def _default_value(self, key):
+        return key
