@@ -10,7 +10,7 @@ from .models import Post
 def view_posts(request, username, *args, **kwargs):
     user = get_object_or_404(Person, username=username)
     posts = Post.objects.filter(created_by=user)
-    return render(request, "posts/posts.html  ", {"posts": posts})
+    return render(request, "posts/posts.html", {"posts": posts})
 
 
 def view_post(request, username=None, uuid=None):
