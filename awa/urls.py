@@ -115,6 +115,6 @@ urlpatterns = [
     path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
     path("~<str:username>/", include(user_urls)),
-    path("", ViewPageSet().as_view(), name="index"),
+    path("", ViewPageSet().as_view(), name="awa:index"),
     # path("", include(anchor_urls)),
 ]

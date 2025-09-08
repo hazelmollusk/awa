@@ -21,15 +21,19 @@ class UUIDModel(models.Model):
 
 
 class Post(UUIDModel, AuditedMixin):
+    title = models.CharField(max_length=100, blank=True, null=True)
     content = content_post_field()
 
-    def str(self):
-        return slugify(self.content)[0:20]
+    def __str__(self):
+        return f"Post by {self.created_by}"
 
     class Meta:
         indexes = [models.Index(fields=["content"])]
 
         ordering = ["-modified"]
+
+    def get_absolute_url(self):
+        return reverse("post_detail", args=[str(self.uuid)])
 
 
 class Comment(UUIDModel, AuditedMixin):

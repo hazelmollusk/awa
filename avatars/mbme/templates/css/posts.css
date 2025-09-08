@@ -2,5 +2,12 @@
 
 div.post {
     background-image:url('{% static "posts/postbg.png" %}');
-    background-repeat:none;
+    background-repeat:no-repeat;
+    background-position:top left;
+    background-size:100px auto;
+    padding-left:120px;
+    min-height:120px;
+}
+div.post-header {
+    font-size: 0.6em;
 }
