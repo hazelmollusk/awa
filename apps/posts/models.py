@@ -9,8 +9,8 @@ from django_summernote.fields import SummernoteTextField
 
 from apps.people.models import AuditedMixin
 
-content_post_field = lambda: SummernoteTextField()
-content_comment_field = lambda: TextField()
+content_post_field = lambda: SummernoteTextField()  # noqa: E731
+content_comment_field = lambda: TextField()  # noqa: E731
 
 
 class UUIDModel(models.Model):
