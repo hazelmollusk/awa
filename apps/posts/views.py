@@ -11,7 +11,7 @@ def view_posts(request, username, *args, **kwargs):
     return render(request, "posts/posts.html", {"posts": posts, "user": user})
 
 
-def view_post(request, username=None, uuid=None):
+def view_post(request, username=None, uuid=None, *args, **kwargs):
     warning(f"uuid: {uuid}")
     if not uuid:
         return view_posts(request, username=username)
