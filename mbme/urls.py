@@ -22,7 +22,7 @@ from .views import (
     script, login, profile, logout,
 )
 
-app_name = 'mbme'
+app_name = 'awa'
 local_urls = ([
     path('css/<str:template_name>.css', stylesheet, name='stylesheet'),
     path('js/<str:template_name>.js', script, name='script'),
