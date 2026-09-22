@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+export root=$(realpath "$(dirname $BASH_SOURCE)/../")
+export PYTHONSTARTUP=$root/bin/awa_include.py
+
+py="$root/.env/bin/python"
+exe="$root/manage.py"
+if [ $# == 0 ]; then
+    $py $exe shell_plus --force-color
+else
+    $py $exe $*
+fi

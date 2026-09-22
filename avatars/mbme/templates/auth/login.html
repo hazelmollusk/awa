@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Sign in {% endblock %}
+{% block contents %} 
+    <div class="row">
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <a href="{% url 'social:begin' 'github' %}">Login With Github</a>
+        </div>
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a>
+        </div>
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <a href="{% url 'social:begin' 'twitter' %}">Login With X</a>
+        </div>
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <a href="{% url 'social:begin' 'facebook' %}">Login With Facebook</a>
+        </div>
+    </div>
+{% endblock %}

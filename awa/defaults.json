@@ -1,0 +1,38 @@
+{
+  "https": false,
+  "env": {},
+  "databases": {},
+  "storages": {
+    "type": "default",
+    "default": {
+      "label": "media",
+      "location": "media/"
+    },
+    "staticfiles": {
+      "label": "static",
+      "location": "static/"
+    }
+  },
+  "paths": {
+    "prefix": "/",
+    "i18n": "i18n",
+    "adyouin": "admin",
+    "auth": "auth",
+    "pages": "pg",
+    "posts": "posts",
+    "groups": "groups",
+    "resources": "_res"
+  },
+  "apps": [
+    "photologue"
+  ],
+  "secret_key": "changeme",
+  "debug": true,
+  "connections": {
+    "redirect_url": "awa:index",
+    "aws": {},
+    "github": {},
+    "google": {},
+    "facebook": {}
+  }
+}

@@ -1,0 +1,17 @@
+h3, h4, h5 {
+    padding:none;
+    margin:0px;
+}
+p {
+    margin:0.3em;
+}
+.resume td.company-icon {
+    vertical-align:top;
+}
+.resume-header {
+    margin-left: 80%;
+}
+.resume img.company-icon {
+    height:24px;
+    width:auto;
+}
