@@ -71,7 +71,7 @@ class EngineConfig(AttrDict):
                 )
             }
         )
-        self.OPTIONS.path = self.path
+        self.OPTIONS.path = self.get("path") or self.label
         self.OPTIONS.location = self.location
         if self._backend_label not in self:
             backend_kls = self._backend_type_map.get(
