@@ -103,7 +103,7 @@ class StorageConfig(EngineConfig):
             import boto3
             resource = boto3.resource("s3")
             bucket = resource.Bucket(self.bucket_name)
-            region = b.bucket_region or "us-east-1"
+            region = bucket.bucket_region or "us-east-1"
             url = f"https://{self.bucket_name}.s3.{region}.amazonaws.com/{self.path}/"
             self._location = url
         return self.get("_location", f"{self.label}/")
