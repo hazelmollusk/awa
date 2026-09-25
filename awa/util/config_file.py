@@ -234,6 +234,7 @@ class AwaConfig(ConfigFile):
             vals = defaults.copy()
             vals.update(v)
             v.label = k
+            v.setdefault("path", k)
             self.storages[k] = kls(vals, label=k)
 
         storages = self.storages.to_dict()
