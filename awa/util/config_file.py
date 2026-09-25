@@ -108,9 +108,6 @@ class StorageConfig(EngineConfig):
             self._location = url
         return self.get("_location", f"{self.label}/")
 
-    @property
-    def path(self):
-        return self.get("_path" or self.label)
 
 
 class StaticConfig(StorageConfig):
