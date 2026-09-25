@@ -233,6 +233,7 @@ class AwaConfig(ConfigFile):
             kls = StaticConfig if k.startswith("static") else StorageConfig
             vals = defaults.copy()
             vals.update(v)
+            v.label = k
             self.storages[k] = kls(vals, label=k)
 
         storages = self.storages.to_dict()
