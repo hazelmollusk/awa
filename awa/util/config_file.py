@@ -188,7 +188,7 @@ class AwaConfig(ConfigFile):
                 "AWS_ACCESS_KEY_ID": self.connections.aws.key,
                 "AWS_SECRET_ACCESS_KEY": self.connections.aws.secret,
                 "AWS_S3_REGION_NAME": self.connections.aws.region,
-            }
+            })
 
     def init_projects(self):
         self.setdefault("projects", [])
