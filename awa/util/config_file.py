@@ -66,7 +66,7 @@ class EngineConfig(AttrDict):
                     [
                         k.startswith("_"),
                         k in ("OPTIONS", "BACKEND"),
-                        k in self.INTERNAL_OPTIONS,
+                        #k in self.INTERNAL_OPTIONS,
                     ]
                 )
             }
