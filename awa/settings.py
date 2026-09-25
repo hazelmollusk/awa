@@ -60,8 +60,9 @@ scheme = "http" if not config.https else "https"
 DEBUG = config.debug or False
 
 DOMAINS = []
-for d in config.project.domains:
-    DOMAINS.append(d.domain)
+for p in config.projects:
+    for d in p.domains:
+        DOMAINS.append(d.domain)
 
 # ALLOWED_HOSTS = DOMAINS
 ALLOWED_HOSTS = ["*"]  # for ELB/CF/etc
