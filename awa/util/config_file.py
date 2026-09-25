@@ -71,6 +71,8 @@ class EngineConfig(AttrDict):
                 )
             }
         )
+        self.OPTIONS.path = self.path
+        self.OPTIONS.location = self.location
         if self._backend_label not in self:
             backend_kls = self._backend_type_map.get(
                 self.type or self._default_type, self._default_backend
@@ -97,11 +99,17 @@ class StorageConfig(EngineConfig):
 
     @property
     def location(self):
-        return self.get("_location", "/")
+        if self.type == "s3" and not "_location" in self:
+            import boto3
+            client = boto3.client("s3")
+            response = client.get_bucket_website(Bucket=self.bucket_name)
+            prefix = response["RedirectAllRequestsTo"]["Protocol"] + "://" + response["RedirectAllRequestsTo"]["HostName"]
+            self._location = prefix
+        return self.get("_location", self.label)
 
     @property
     def path(self):
-        return self.get("_path" or "")
+        return self.get("_path" or self.label)
 
 
 class StaticConfig(StorageConfig):
