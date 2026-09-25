@@ -174,11 +174,21 @@ class AwaConfig(ConfigFile):
 
     def initialize(self):
         self.init_defaults()
+        self.init_constants()
         self.init_projects()
         self.init_storage()
         self.init_templates()
         self.constants = AttrDict(self.constants)
         self.init_env()
+
+    def init_constants(self):
+        self.setdefault("constants", {})
+        if self.connections.aws.enabled:    
+            self.constants.update({
+                "AWS_ACCESS_KEY_ID": self.connections.aws.key,
+                "AWS_SECRET_ACCESS_KEY": self.connections.aws.secret,
+                "AWS_S3_REGION_NAME": self.connections.aws.region,
+            }
 
     def init_projects(self):
         self.setdefault("projects", [])
