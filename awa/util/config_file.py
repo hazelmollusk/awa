@@ -101,11 +101,12 @@ class StorageConfig(EngineConfig):
     def location(self):
         if self.type == "s3" and not "_location" in self:
             import boto3
-            client = boto3.client("s3")
-            response = client.get_bucket_website(Bucket=self.bucket_name)
-            prefix = response["RedirectAllRequestsTo"]["Protocol"] + "://" + response["RedirectAllRequestsTo"]["HostName"]
-            self._location = prefix
-        return self.get("_location", self.label)
+            resource = boto3.resource("s3")
+            bucket = resource.Bucket(self.bucket_name)
+            region = b.bucket_region or "us-east-1"
+            url = f"https://{self.bucket_name}.s3.{region}.amazonaws.com/{self.path}/"
+            self._location = url
+        return self.get("_location", f"{self.label}/")
 
     @property
     def path(self):
