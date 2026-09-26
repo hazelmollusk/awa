@@ -37,7 +37,6 @@ class EngineConfig(AttrDict):
     _backend_type_map = {}
     _default_options = {}
     INTERNAL_OPTIONS = (
-        "path",
         "type",
         "label",
     )  # TODO make this per-subclass ie class var
@@ -58,21 +57,22 @@ class EngineConfig(AttrDict):
         options.update(self._default_options)
         options.update(self)
         self.setdefault("OPTIONS", {})
-        self.OPTIONS.merge(
-            {
+        self.setdefault("location", self.label)
+        self.setdefault("path", self.label)
+        
+        opts = {
                 k: v
                 for k, v in options.items()
                 if not any(
                     [
                         k.startswith("_"),
                         k in ("OPTIONS", "BACKEND"),
-                        k not in self.INTERNAL_OPTIONS,
+                        k in self.INTERNAL_OPTIONS,
                     ]
                 )
             }
-        )
-        self.OPTIONS.path = self.get("path", self.label)
-        self.OPTIONS.location = self.location
+        
+        self.OPTIONS.merge(opts)
         if self._backend_label not in self:
             backend_kls = self._backend_type_map.get(
                 self.type or self._default_type, self._default_backend
