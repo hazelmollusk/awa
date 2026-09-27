@@ -58,7 +58,7 @@ class EngineConfig(AttrDict):
         options.update(self)
         self.setdefault("OPTIONS", {})
         self.setdefault("location", self.label)
-        self.setdefault("path", self.label)
+        if type != "s3": self.setdefault("path", self.label)
         
         opts = {
                 k: v
