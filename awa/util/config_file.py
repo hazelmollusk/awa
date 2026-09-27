@@ -39,6 +39,7 @@ class EngineConfig(AttrDict):
     INTERNAL_OPTIONS = (
         "type",
         "label",
+        "path"
     )  # TODO make this per-subclass ie class var
 
     def __init__(self, *args, base_path=None, **kwargs):
