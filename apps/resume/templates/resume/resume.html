@@ -4,10 +4,11 @@
 {% block extrastyle %}
 <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='resume' %}" />
 {% endblock %}
-{% block contents %}
+
 {% block page_title %}
 {{ owner.profile.first_name }} {{ owner.profile.last_name }} | Resume
 {% endblock %}
+{% block contents %}
 <div class="resume">
   {% if not owner %}no owner{% endif %}
   <div class="resume-header">
