@@ -233,7 +233,6 @@ class AwaConfig(ConfigFile):
             kls = StaticConfig if k.startswith("static") else StorageConfig
             vals = defaults.copy()
             vals.setdefault("label", k)  # label = k
-            vals.setdefault("path", k)
             vals.update(v)
             self.storages[k] = kls(vals, label=k)
 
