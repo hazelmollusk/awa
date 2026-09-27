@@ -4,7 +4,9 @@
 {% block extrastyle %}
 <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='resume' %}" />
 {% endblock %}
-
+{% block title %}
+{{ owner.profile.first_name }} {{ owner.profile.last_name }} | Resume
+{% endblock %}
 {% block page_title %}
 {{ owner.profile.first_name }} {{ owner.profile.last_name }} | Resume
 {% endblock %}
