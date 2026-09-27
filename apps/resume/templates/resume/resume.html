@@ -5,11 +5,14 @@
 <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='resume' %}" />
 {% endblock %}
 {% block contents %}
+{% block page_title %}
+{{ owner.profile.first_name }} {{ owner.profile.last_name }} | Resume
+{% endblock %}
 <div class="resume">
   {% if not owner %}no owner{% endif %}
   <div class="resume-header">
     <h1>{{ owner.profile.first_name }} {{ owner.profile.last_name }} 
-      {% if resume.title %}{{ resume.title }}{% endif %}</h1>
+      {% if resume.title %} | {{ resume.title }}{% endif %}</h1>
     {{ owner.profile.city }} {{ owner.profile.state }} {{ owner.profile.country }}<br/>
     {{ owner.email }}<br/>
     {{ owner.profile.phone }}

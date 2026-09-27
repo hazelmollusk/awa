@@ -42,7 +42,9 @@
               {% endfor %}
             {% endblock %}
             <li class="project_label">
-              <a href="https://{{ site.domain }}">{{ project.label }}</a>
+              {% block page_title %}
+                <a href="https://{{ site.domain }}">{{ project.label }}</a>
+              {% endblock %}
             </li>
           </ul>
         </div>
