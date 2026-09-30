@@ -22,6 +22,8 @@ def awa(request):
             if d.domain == site.domain:
                 project = p
                 break
+        if project:
+            break
     if not project:
         project = config.projects[0]
     from pprint import pp
