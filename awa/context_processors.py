@@ -16,7 +16,14 @@ def awa(request):
         site = Site.objects.get_current(request)
     except Site.DoesNotExist:
         site = Site.objects.first()
-    project = config.project
+    project = None
+    for p in config.projects:
+        for d in p.domains:
+            if d.domain == site.domain:
+                project = p
+                break
+    if not project:
+        project = config.projects[0]
 
     context = {
         "links": {
