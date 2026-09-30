@@ -5,10 +5,13 @@
   <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='posts' %}" />
 {% endblock %}
 
+{% block page_title %}
+  <a href="{% url 'posts:post_list' username=user.username %}">{{ user.username }} | posts</a>
+{% endblock %}
 {% block contents %}
   {% for post in posts %}
     <div class="post-header">
-      <a href="{{ post.uuid }}/">
+      <a href="{% url 'posts:post_detail' username=post.created_by.username uuid=post.uuid %}">
         Posted by {{ post.created_by.username }}
         at {{ post.created }}
       </a>

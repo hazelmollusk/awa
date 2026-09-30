@@ -1,11 +1,11 @@
 from logging import warning
 from django.shortcuts import get_object_or_404, render
 
-from apps.people.models import Person  # , get_object_or_404
+from apps.people.models import Person
 from .models import Post
 
 
-def view_posts(request, username, *args, **kwargs):
+def view_posts(request, username=None, *args, **kwargs):
     user = get_object_or_404(Person, username=username)
     posts = Post.objects.filter(created_by=user)
     return render(request, "posts/posts.html", {"posts": posts, "user": user})

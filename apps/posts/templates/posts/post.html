@@ -4,7 +4,9 @@
 {% block extrastyle %}
   <link rel="stylesheet" href="{% url 'awa:stylesheet' template_name='posts' %}" />
 {% endblock %}
-
+{% block page_title %}
+  <a href="{% url 'posts:post_list' username=user.username %}">{{ user.username }} | posts</a>
+{% endblock %}
 {% block contents %}
   <div class="post-header">
     <a href="#">

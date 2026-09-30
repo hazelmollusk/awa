@@ -96,7 +96,7 @@ user_urls = [
     path(f"{config.paths.posts}/", include("apps.posts.urls")),
     path(f"{config.paths.resume}/", include("apps.resume.urls")),
 ]
-
+app_name = "awa"
 urlpatterns = [
     path(f"{config.paths.i18n}/", include("django.conf.urls.i18n")),
     path(
@@ -114,7 +114,7 @@ urlpatterns = [
     path(f"{config.paths.admin}/", admin.site.urls),
     path(f"{config.paths.pages}/<slug:slug>/", ViewPageSet().as_view()),
     path("", include(local_urls)),
-    path("~<str:username>/", include(user_urls)),
+    path("~<str:username>/", include(user_urls), name="awa.user"),
     path("", ViewPageSet().as_view(), name="awa:index"),
     # path("", include(anchor_urls)),
 ]
