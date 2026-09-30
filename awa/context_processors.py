@@ -24,6 +24,9 @@ def awa(request):
                 break
     if not project:
         project = config.projects[0]
+    from pprint import pp
+
+    pp(project)
 
     context = {
         "links": {
